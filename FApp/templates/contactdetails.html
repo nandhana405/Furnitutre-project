@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+<div class="card-body">
+                    <div class="table-responsive">
+                      <div id="basic-datatables_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table id="basic-datatables" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="basic-datatables_info">
+                        <thead>
+                          <tr role="row">
+                            <th  style="width: 176.244px;">First name</th>
+                            <th  style="width: 176.244px;">Last name</th>
+                            <th  style="width: 176.244px;">Email</th>
+                              <th  style="width: 176.244px;">Message</th>
+
+                              <th  style="width: 176.244px;">Actions</th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for i in c %}
+                        <tr role="row" class="odd">
+<!--                            <td class="sorting_1">Airi Satou</td>-->
+                            <td>{{i.First_name}}</td>
+                            <td>{{i.Last_name}}</td>
+                            <td>{{i.Email}}</td>
+                            <td>{{i.Message}}</td>
+
+
+                            <td> <a class="btn btn-danger" href="#">Delete</a></td>
+
+
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+</form>
+</body>
+</html>
+{% endblock %}

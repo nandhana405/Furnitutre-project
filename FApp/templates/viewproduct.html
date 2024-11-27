@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+<div class="card-body">
+                    <div class="table-responsive">
+                      <div id="basic-datatables_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table id="basic-datatables" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="basic-datatables_info">
+                        <thead>
+                          <tr role="row">
+                              <th  style="width: 176.244px;">Product category</th>
+
+                            <th  style="width: 176.244px;">Product Name</th>
+                            <th  style="width: 176.244px;">Quantity</th>
+                            <th  style="width: 176.244px;">MRP</th>
+                            <th  style="width: 176.244px;">Description</th>
+                            <th  style="width: 176.244px;">Country of Origin</th>
+                            <th  style="width: 176.244px;">Manufactured by</th>
+                            <th  style="width: 176.244px;">Image 1</th>
+                            <th  style="width: 176.244px;">Image 2</th>
+                            <th  style="width: 176.244px;">Image 3</th>
+                              <th style="width: 176.244px;">Edit</th>
+                              <th style="width: 176.244px;">Delete</th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for i in data %}
+                        <tr role="row" class="odd">
+<!--                            <td class="sorting_1">Airi Satou</td>-->
+                         <td>{{i.category}}</td>
+                         <td>{{i.product_name}}</td>
+                         <td>{{i.quantity}}</td>
+                         <td>{{i.mrp}}</td>
+                         <td>{{i.description}}</td>
+                         <td>{{i.country}}</td>
+                         <td>{{i.manufactured}}</td>
+                         <td><img src="{{i.image1.url}}" width="100px" height="100px"></td>
+                         <td><img src="{{i.image2.url}}" width="100px" height="100px"></td>
+                         <td><img src="{{i.image3.url}}" width="100px" height="100px"></td>
+
+                            <td>
+                                <a class="btn btn-success" href="{% url 'edit_product' c_id=i.id %}">Edit</a><br>
+
+                            </td>
+                            <td>
+                                 <a class="btn btn-danger" href="{% url 'delete_product' c_id=i.id %}">Delete</a>
+                            </td>
+
+
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+  {% for i in messages %}
+     {% if i.tags == 'success' %}
+        <script>
+        swal('{{i}}','','success');
+        </script>
+
+       {% elif i.tags == 'error' %}
+        <script>
+        swal('{{i}}','','error');
+        </script>
+
+         {% elif i.tags == 'warning' %}
+        <script>
+        swal('{{i}}','','warning');
+        </script>
+
+         {% else  %}
+        <script>
+        swal('{{i}}','','info');
+        </script>
+     {% endif %}
+  {% endfor %}
+{% endif %}
+</form>
+</body>
+</html>
+{% endblock %}
